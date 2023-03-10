@@ -1,33 +1,36 @@
 <html xmlns:th="http://thymeleaf.org">
-	<head>
-		<title>Online Bank</title>
-		<link rel="stylesheet" href="/css/transactions.css"/>
-	</head>
-	<body>
-		<h2>Transaction History</h2>
-				
-		<table>
-			<tr>
-				<th>ID</th>
-				<th>Date</th>
-				<th>Retailer</th>
-				<th>Funds In</th>
-				<th>Funds Out</th>
-			</tr>
-			<!--Implementing for each loop:  to dynamically list ALL 100 transactions from the Repo -->
-			 
-			<tr th:each ="storedTransaction : ${transactionHistory}">
-				<td> <a th:href ="@{transactions/{transactionId}(transactionId=${storedTransaction.id})}"> [[${storedTransaction.id}]]  </a></td>
-				<td> [[${storedTransaction.date}]] </td>
-				<td> [[${storedTransaction.retailer}]] </td>
-				<td > <span th:text = "(${storedTransaction.type} == 'C'? ${storedTransaction.amount}:null)"> </span></td>
-				<td>  <span th:text = "(${storedTransaction.type} == 'D'? ${storedTransaction.amount}:null)"> </span></td>	
-							
-			</tr>
-		</table>		
-		<form th:action="@{/transactions}" method= "get" >	
-			
-		
-	</form>
-	</body>
+<head>
+<title>Online Bank</title>
+<link rel="stylesheet" href="/css/transactions.css" />
+</head>
+<body>
+	<h2>Transaction History</h2>
+
+	<table>
+		<tr>
+			<th>ID</th>
+			<th>Date</th>
+			<th>Retailer</th>
+			<th>Funds In</th>
+			<th>Funds Out</th>
+		</tr>
+		<!--Implementing for each loop:  to dynamically list ALL 100 transactions from the Repo -->
+
+		<tr th:each="storedTransaction : ${transactionHistory}">
+			<td><a
+				th:href="@{transactions/{transactionId}(transactionId=${storedTransaction.id})}">
+					[[${storedTransaction.id}]] </a></td>
+			<td>[[${storedTransaction.date}]]</td>
+			<td>[[${storedTransaction.retailer}]]</td>
+			<td><span
+				th:text="(${storedTransaction.type} == 'C'? ${storedTransaction.amount}:null)">
+			</span></td>
+			<td><span
+				th:text="(${storedTransaction.type} == 'D'? ${storedTransaction.amount}:null)">
+			</span></td>
+
+		</tr>
+	</table>
+	<form th:action="@{/transactions}" method="get"></form>
+</body>
 </html>

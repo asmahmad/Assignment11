@@ -14,14 +14,14 @@ import com.codercampus.Assignment11.domain.Transaction;
 @Repository
 public class TransactionRepository {
 	private List<Transaction> transactions = new ArrayList<>(100);
-	
-	public TransactionRepository () {
+
+	public TransactionRepository() {
 		super();
 		populateData();
 	}
-	
-	public List<Transaction> findAll () {
-		
+
+	public List<Transaction> findAll() {
+
 		// Sorting ArrayList in Ascending order:
 		Collections.sort(transactions);
 		return transactions;
@@ -30,25 +30,24 @@ public class TransactionRepository {
 	@SuppressWarnings("unchecked")
 	private void populateData() {
 		try (FileInputStream fileInputStream = new FileInputStream("transactions.txt");
-			 ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);) {
+				ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);) {
 			this.transactions = (List<Transaction>) objectInputStream.readObject();
 		} catch (IOException | ClassNotFoundException e) {
 			e.printStackTrace();
-		} 
-		
+		}
+
 	}
 
 	public Transaction findById(Long transactionId) {
 		Transaction singleTransaction = new Transaction();
-		for(Transaction trans: transactions){
-			
-			if(transactionId.equals(trans.getId())) {
-				singleTransaction = trans;	
-				
+		for (Transaction trans : transactions) {
+
+			if (transactionId.equals(trans.getId())) {
+				singleTransaction = trans;
+
 			}
 		}
 		return singleTransaction;
 	}
-
 
 }
