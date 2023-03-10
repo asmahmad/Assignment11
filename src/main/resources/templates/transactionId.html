@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+		<title>Online Bank</title>
+		<link rel="stylesheet" href="/css/transactions.css"/>
+</head>
+<body>
+
+<!-- code below is dynamically listing specified transaction from the Repo -->
+
+	<form th:action="@{/transactionId}" method= "get" >	
+			<h1 th:if="${transaction.type == 'D'}"> Transaction ID : [[${transaction.Id}]] (Debit) </h1>
+			<h1 th:if="${transaction.type == 'C'}"> Transaction ID : [[${transaction.Id}]] (Credit) </h1>
+			<h4>Date: <span th:text="${transaction.date}"></span></h4>
+			<h4>Amount: <span th:text="${transaction.amount}"></span></h4>
+			<h4>Description: <span th:text="${transaction.date}"></span></h4>
+			<a href ="/transactions"> back </a>
+		
+	</form>
+</body>
+</html>

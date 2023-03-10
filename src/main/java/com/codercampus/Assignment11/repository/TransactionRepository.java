@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
@@ -20,6 +21,9 @@ public class TransactionRepository {
 	}
 	
 	public List<Transaction> findAll () {
+		
+		// Sorting ArrayList in Ascending order:
+		Collections.sort(transactions);
 		return transactions;
 	}
 
@@ -33,4 +37,18 @@ public class TransactionRepository {
 		} 
 		
 	}
+
+	public Transaction findById(Long transactionId) {
+		Transaction singleTransaction = new Transaction();
+		for(Transaction trans: transactions){
+			
+			if(transactionId.equals(trans.getId())) {
+				singleTransaction = trans;	
+				
+			}
+		}
+		return singleTransaction;
+	}
+
+
 }
