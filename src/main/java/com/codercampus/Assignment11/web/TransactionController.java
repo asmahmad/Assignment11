@@ -14,25 +14,25 @@ import com.codercampus.Assignment11.service.TransactionService;
 
 @Controller
 public class TransactionController {
-	
+
 	@Autowired
 	private TransactionService transactionService;
-	
+
 	@GetMapping("/transactions")
 	public String getTransactions(ModelMap model) {
-		
-		List<Transaction>  transactionHistory =transactionService.callTransactionRepository();
+
+		List<Transaction> transactionHistory = transactionService.callTransactionRepository();
 		model.put("transactionHistory", transactionHistory);
-		
+
 		return "transactions";
 	}
-	
+
 	@GetMapping("/transactions/{transactionId}")
 	public String getPerson(@PathVariable Long transactionId, ModelMap model) {
-		
-		Transaction  transaction =transactionService.findById(transactionId);
+
+		Transaction transaction = transactionService.findById(transactionId);
 		model.put("transaction", transaction);
-		
-		return 	"transactionId";		
+
+		return "transactionId";
 	}
 }
